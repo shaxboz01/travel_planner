@@ -1,3 +1,4 @@
+from drf_yasg.openapi import Response
 from rest_framework import filters
 from rest_framework import viewsets
 from .models import *
@@ -17,18 +18,8 @@ from rest_framework.pagination import PageNumberPagination
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAdmin]
+    # permission_classes = [IsAuthenticated]
 
-    class Meta:
-        model = CustomUser
-        fields = ['username', 'password', 'email', 'first_name', 'last_name']
-
-    def create(self, validated_data):
-        user = CustomUser.objects.create(**validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-
-        return user
 
 class DestinationViewSet(viewsets.ModelViewSet):
     queryset = Destination.objects.all()
