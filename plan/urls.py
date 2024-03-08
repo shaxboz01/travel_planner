@@ -11,7 +11,4 @@ router.register(r'users', CustomUserViewSet, basename='users')
 urlpatterns = router.urls
 
 
-urlpatterns += [
-    path('login/', ObtainTokenPairWithUsername.as_view(), name='login')
-    ]
 
